@@ -20,7 +20,7 @@ function getLeague(country) {
         request(options, function (error, response, body) {
             if (error) {
                 console.log(error);
-                resolve(null);
+                return resolve(null);
             }
 
             let json = JSON.parse(body);
@@ -54,7 +54,7 @@ function getStandings(season, league) {
         request(options, function (error, response, body) {
             if (error) {
                 console.log(error);
-                resolve(null);
+                return resolve(null);
             }
 
             let json = JSON.parse(body);
@@ -109,10 +109,10 @@ module.exports = function () {
                 if (idx % 5 == 0) await sleep(60000);
 
                 let result = await getLeague(el.name);
-                if (!result) reject();
+                if (!result) return reject();
 
                 let standings = await getStandings(result.seasons[0].year, result.league.id);
-                if (!standings) reject();
+                if (!standings) return reject();
 
                 let team = standings.team.name;
                 let image = standings.team.logo;
