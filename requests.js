@@ -54,7 +54,7 @@ function getStandings(season, league) {
             let json = JSON.parse(body);
             console.log(json)
 
-            if (json.response[0].league) {
+            if (json.results) {
                 let leader = json.response[0].league.standings.flat().find(item => {
                     return item.rank == 1;
                 });
