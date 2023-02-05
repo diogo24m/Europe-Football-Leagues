@@ -15,7 +15,7 @@ function getLeague(country) {
             //if (error) reject(error);
             if (error) {
                 console.log(error);
-                resolve()
+                resolve(null);
             }
 
             let json = JSON.parse(body);
@@ -29,7 +29,7 @@ function getLeague(country) {
 
                 resolve(current);
             } else
-                resolve()
+                resolve(null);
         });
     });
 }
@@ -49,15 +49,17 @@ function getStandings(season, league) {
             //if (error) reject(error);
             if (error) {
                 console.log(error);
-                resolve()
+                resolve(null);
             }
             let json = JSON.parse(body);
 
-            let leader = json.response[0].league.standings.flat().find(item => {
-                return item.rank == 1;
-            })
-
-            resolve(leader);
+            if (json.response[0].league) {
+                let leader = json.response[0].league.standings.flat().find(item => {
+                    return item.rank == 1;
+                });
+                resolve(leader);
+            } else
+                resolve(null);
         });
     });
 }
@@ -97,7 +99,10 @@ module.exports = function () {
         getLeagueLeaders: async function (callback) {
             let promises = country_list.map((el) => new Promise(async (resolve, reject) => {
                 let result = await getLeague(el.name);
+                if (!result) reject();
+
                 let standings = await getStandings(result.seasons[0].year, result.league.id);
+                if (!standings) reject();
 
                 let team = standings.team.name;
                 let image = standings.team.logo;
