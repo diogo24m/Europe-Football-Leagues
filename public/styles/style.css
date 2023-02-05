@@ -1,0 +1,39 @@
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+#chartdiv {
+	width: 100%;
+	height: 98vh;
+}
+
+h1 {
+	position: fixed;
+	top: 0;
+    left: 15px;
+    right: 15px;
+	text-align: center;
+	z-index: 1;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-size: 12px;
+}
+footer p {
+	margin-top: 0;
+}
+
+green {
+	color: green;
+}
+red {
+	color: red;
+}
+yellow {
+	color: yellow;
+}
