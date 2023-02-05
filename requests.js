@@ -125,8 +125,9 @@ module.exports = function () {
             }));
 
             Promise.all(promises).then(res => {
-                callback(res);
                 console.log('Got data at:', new Date());
+
+                callback(res);
             }).catch(error => {
                 callback([]);
             });

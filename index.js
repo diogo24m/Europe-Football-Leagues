@@ -16,7 +16,7 @@ requests.getLeagueLeaders(function (res) {
     results = res;
 });
 // Every day at 23:55
-schedule.scheduleJob("*/55 23 * * *", function () {
+schedule.scheduleJob("*/55 0 * * *", function () {
     requests.getLeagueLeaders(function (res) {
         results = res;
     });
