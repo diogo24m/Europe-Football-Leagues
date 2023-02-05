@@ -106,7 +106,7 @@ module.exports = function () {
         getLeagueLeaders: async function (callback) {
             let promises = country_list.map((el, idx) => new Promise(async (resolve, reject) => {
                 // Respect API request limits
-                if (idx % 5 == 0) await sleep(60000);
+                if (idx > 0) await sleep(idx * 10000);
 
                 let result = await getLeague(el.name);
                 if (!result) return reject();
