@@ -21,6 +21,10 @@ schedule.scheduleJob("*/55 0 * * *", function () {
         results = res;
     });
 });
+//Keep server awake
+setInterval(function () {
+    console.log(".");
+}, 60000);
 
 app.use(compression());
 
