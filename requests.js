@@ -1,5 +1,11 @@
 var request = require("request");
 
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
 function getLeague(country) {
     const options = {
         method: 'GET',
