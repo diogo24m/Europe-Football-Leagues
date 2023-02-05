@@ -12,13 +12,13 @@ function getLeague(country) {
 
     return new Promise((resolve, reject) => {
         request(options, function (error, response, body) {
-            //if (error) reject(error);
             if (error) {
                 console.log(error);
                 resolve(null);
             }
 
             let json = JSON.parse(body);
+            console.log(json)
 
             if (json.results) {
                 let current = json.response[0];
@@ -46,12 +46,13 @@ function getStandings(season, league) {
 
     return new Promise((resolve, reject) => {
         request(options, function (error, response, body) {
-            //if (error) reject(error);
             if (error) {
                 console.log(error);
                 resolve(null);
             }
+
             let json = JSON.parse(body);
+            console.log(json)
 
             if (json.response[0].league) {
                 let leader = json.response[0].league.standings.flat().find(item => {
